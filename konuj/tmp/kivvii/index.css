@@ -1,0 +1,35 @@
+#rssems-wrapper #rssems
+{
+	background-attachment: scroll;
+	background-color: transparent;
+	background-image: url(images/bg-rssems.jpg);
+	background-position: left bottom;
+	background-repeat: repeat-x;
+	margin: 0;
+	padding-bottom: 30px;
+	padding-left: 37px;
+	padding-right: 24px;
+	padding-top: 22px;
+}
+#rssems-wrapper
+{
+	background: #233A48 url(images/beta.gif) no-repeat scroll right top;
+	margin-left: -35px;
+	margin-right: -35px;
+	margin-bottom: 15px;
+	color: #FFFFFF;
+}
+.twitt
+{
+	position: absolute;
+	margin-left: 687px;
+	margin-top: -4px;
+	#margin-left: 386px;
+	background: url(images/twitter.jpg) no-repeat 1px 1px;
+	width: 160px;
+	height: 55px;
+}
+A:Hover .twitt
+{
+	background: url(images/twitter.jpg) no-repeat -162px 1px;
+}

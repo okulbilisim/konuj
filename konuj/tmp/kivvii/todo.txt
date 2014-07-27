@@ -1,0 +1,26 @@
++ flash kullanarak knock sesi ekle
++ knock sesi gondermeye limit koy (5sn de bir gonderilebilsin)
++ konuþmayý kaydet linki ekle
++ < ve > karakterlerini düzelt (htmlspecialchars kullanýldý)
++ ajax sorgularýnda session kullan
++ anasayfa tasarýmýný hazýrla.
++ favicon hazýrla
++ konuþma sayfasýna kaç kiþi online olduðunu yaz
++ smiley ekle.
++ kontrol süresi yarým saniyeden 1 saniyeye çýkarýldý.
++ favicon resimleri png olarak deðiþtirildi.
++ yeni mesaj alýndýðýndaki favicon resminin rengi kýrmýzý olarak deðiþtirildi.
++ cookieler veya javascript kapalýysa uyarý vermesini saðla.
+
+- aþýrý cpu kullanýmý sorununu çöz
+- IE6 çalýþmýyor, düzelt.
+- IE7 Tema deðiþtirme özelliði çalýþmýyor, düzelt.
+- chrome ve safaride yeni mesaj alýndýðýnda favicon resmi deðiþmiyor.
+- Arka plan resmindeki beyazlýklarý temizle
+- Baðlantý kopunca iki tarafta da sohbeti kaydetme seçeneði yok, ekle.
+- UTF-8 Kullanmayý unutma.
+- Admin kýsmý için ip kontrollü htaccess koyalým
+- Sohbet penceresinde bir yerde anasayfaya ve diðer þeylerelink vermemiz lazým header footer olaylarý
+- Admin arayüzünde sayfalama yapýlsýn konuþmalar için
+- SSS sayfasýndaki listelemeye bir stil verelim
+- Ýletiþim sayfasýna email ve iletiþim formu koyalým

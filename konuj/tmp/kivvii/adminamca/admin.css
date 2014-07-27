@@ -1,0 +1,49 @@
+BODY
+{
+	font-family: Arial;
+}
+#konusmalist
+{
+	width: 700px;
+	font-size: 14px;
+	text-align: center;
+}
+#konusmalist .header
+{
+	font-weight: bold;
+}
+#konusmalist .stil1
+{
+	background-color: #F3F3F3;
+}
+#textlist
+{
+	width: 700px;
+	font-size: 14px;
+}
+#textlist .header
+{
+	font-weight: bold;
+}
+#textlist .stil1
+{
+	background-color: #F3F3F3;
+}
+#textlist .td1
+{
+	width: 140px;
+}
+#textlist .td2
+{
+	width: 40px;
+}
+A
+{
+	color: #8A0101;
+	text-decoration: none;
+}
+A:Hover
+{
+	color: #FD0E0E;
+	text-decoration: underline;
+}

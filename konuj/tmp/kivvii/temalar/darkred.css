@@ -1,0 +1,357 @@
+HTML
+{
+	height: 100%;
+}
+BODY
+{
+	margin: 0;
+	padding: 0;
+	background: #2E1717;
+	height: 100%;
+	font-family: Arial, sans-serif;
+}
+IMG
+{
+	border: 0 none #000000;
+}
+OBJECT#knock
+{
+	visibility: hidden;
+}
+DIV#title
+{
+	font-family: "Trebuchet MS";
+	color: #D58080;
+	font-size: 20px;
+	position: absolute;
+	left: 35px;
+	top: 8px;
+}
+DIV#onlinesay
+{
+	position: absolute;
+	right: 340px;
+	top: 10px;
+	color: #D59F9F;
+}
+DIV#SmileyList
+{
+	position: absolute;
+	bottom: 34px;
+	left: 38px;
+	background-color: #3F2121;
+	border: 2px solid #663333;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	width: 377px;
+	height: 133px;
+	padding: 5px;
+	display: none;
+}
+DIV.smile
+{
+	width: 30px;
+	margin: 2px;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+.youmsg IMG
+{
+	position: inherit;
+	margin: -5px 0 -3px;
+}
+.strangermsg IMG
+{
+	position: inherit;
+	margin: -5px 0 -3px;
+}
+.logwrapper
+{
+	border: 1px solid #604040;
+/*border-radius-topleft: 0.5em
+border-radius-topright: 0.5em*/
+	-moz-border-radius-topleft: 0.5em;
+	-moz-border-radius-topright: 0.5em;
+	-webkit-border-top-left-radius: 0.5em;
+	-webkit-border-top-right-radius: 0.5em;
+	background: #402222;
+	position: absolute;
+	left: 1em;
+	right: 1em;
+	bottom: 55px;
+/*Dimensions for IE:*/
+	_width: 96%;
+	_height: 250px;
+}
+.logbox
+{
+	position: absolute;
+	top: 0.5em;
+	bottom: 0;
+	left: 0.5em;
+	right: 0;
+	overflow: auto;
+/*Dimensions for IE:*/
+	_width: 97%;
+	_height: 230px;
+	color: #DAC4C4;
+}
+.controlwrapper
+{
+	position: absolute;
+	bottom: 1em;
+	left: 1em;
+	right: 1em;
+	height: 27px;
+}
+.controltable
+{
+	border-collapse: separate;
+	border-spacing: 0;
+}
+.disconnectbtnwrapper
+{
+	margin-left: 0.5em;
+	border: 1px solid #3C0909;
+/*border-radius-bottomleft: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.disconnectbtn
+{
+	font-family: sans-serif;
+	font-size: 1em;
+	background: #3E2020;
+	width: 7em;
+	height: 26px;
+	padding: 0;
+	margin: 0;
+	border: 0 none #000000;
+/*border-radius-bottomleft: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #8F5555;
+}
+.smileybtnwrapper
+{
+	margin-right: 0.5em;
+	border: 1px solid #3C0909;
+/*border-radius-bottomleft: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.smileybtn
+{
+	font-family: sans-serif;
+	font-size: 1em;
+	background: #3E2020 url(../images/smileys/smile.gif) no-repeat center;
+	width: 2em;
+	height: 26px;
+	padding: 0;
+	margin: 0;
+	border: 0 none #000000;
+/*border-radius-bottomleft: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #8F5555;
+}
+.sendbtnwrapper
+{
+	margin-left: 0.5em;
+	border: 1px solid #3C0909;
+/*border-radius-bottomright: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.sendbtn
+{
+	font-family: sans-serif;
+	font-size: 1em;
+	background: #3E2020;
+	width: 7em;
+	height: 26px;
+	padding: 0;
+	margin: 0;
+	border: 0 none #000000;
+/*border-radius-bottomright: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #8E5454;
+}
+.knockbtnwrapper
+{
+	margin-left: 0.5em;
+	border: 1px solid #3C0909;
+/*border-radius-bottomright: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.knockbtn
+{
+	font-family: sans-serif;
+	font-size: 1em;
+	background: #3E2020;
+	width: 7em;
+	height: 26px;
+	padding: 0;
+	margin: 0;
+	border: 0 none #000000;
+/*border-radius-bottomright: 0.5em*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #8E5454;
+}
+.chatmsgcell
+{
+	width: 100%;
+}
+.chatmsgwrapper
+{
+	background: #3F2121;
+	border: 1px solid #3C0909;
+	height: 18px;
+	padding: 0.25em;
+}
+.chatmsg
+{
+	width: 100%;
+	background: #3F2121;
+	font-family: sans-serif;
+	font-size: 1em;
+	border: 0 none #000000;
+	padding: 0;
+	margin: 0;
+	height: 18px;
+	font-size: 1em;
+	overflow: auto;
+	color: #C4CFDA;
+}
+.youmsg .msgsource
+{
+	color: #91A0C5;
+	font-weight: bold;
+}
+.strangermsg .msgsource
+{
+	color: #AB3131;
+	font-weight: bold;
+}
+.statuslog
+{
+	color: #A88;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+.logitem
+{
+	padding-bottom: 0.5em;
+}
+#chatmsg:focus
+{
+	outline: none;
+}
+DIV.statuslog A
+{
+	color: #A4A4A4;
+	cursor: pointer;
+}
+DIV.statuslog A:Hover
+{
+	color: #FEFEFE;
+	cursor: pointer;
+}
+DIV#iletiyaziyor
+{
+	position: absolute;
+	bottom: 3px;
+	font: 18px Arial;
+	color: #C86767;
+	display: none;
+	right: 27px;
+}
+#temalar
+{
+	position: absolute;
+	right: 20px;
+	top: 13px;
+	cursor: pointer;
+	color: #D59F9F;
+}
+#temalar DIV#kirmizi
+{
+	width: 15px;
+	height: 15px;
+	background-color: #FCE4E4;
+	border: 1px solid #010101;
+	position: absolute;
+	right: 80px;
+	top: 0px;
+}
+#temalar DIV#mavi
+{
+	width: 15px;
+	height: 15px;
+	background-color: #E5EFFD;
+	border: 1px solid #010101;
+	right: 100px;
+	position: absolute;
+	top: 0px;
+}
+#temalar DIV#darkblue
+{
+	width: 15px;
+	height: 15px;
+	background-color: #405060;
+	border: 1px solid #010101;
+	position: absolute;
+	right: 20px;
+	top: 0px;
+}
+#temalar DIV#darkred
+{
+	width: 15px;
+	height: 15px;
+	background-color: #5F3F3F;
+	border: 1px solid #010101;
+	position: absolute;
+	right: 40px;
+	top: 0px;
+}
+#temalar DIV#karamel
+{
+	width: 15px;
+	height: 15px;
+	background-color: #F7E79B;
+	border: 1px solid #010101;
+	position: absolute;
+	right: 60px;
+	top: 0px;
+}
+#temalar DIV#kivvii
+{
+	width: 15px;
+	height: 15px;
+	background-color: #EEF7D0;
+	border: 1px solid #010101;
+	position: absolute;
+	right: 120px;
+	top: 0px;
+}
+#temalar DIV#cizgi
+{
+	width: 15px;
+	height: 15px;
+	border: 1px solid #010101;
+	right: 0px;
+	position: absolute;
+	top: 0px;
+	background: url(cizgi.png);
+}
+#temalar #temasec
+{
+	position: absolute;
+	width: 80px;
+	right: 145px;
+	top: -2px;
+}

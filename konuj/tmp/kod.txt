@@ -1,0 +1,48 @@
+function getFlashMovieObject(movieName){
+  if (window.document[movieName]) {
+    return window.document[movieName];
+  }
+  if (navigator.appName.indexOf("Microsoft Internet")==-1){
+    if (document.embeds && document.embeds[movieName])
+      return document.embeds[movieName]; 
+  }
+  else{
+    return document.getElementById(movieName);
+  }
+}
+######################################################################
+function PlayFlashMovie(){
+	var flashMovie=getFlashMovieObject("knock");
+	flashMovie.Play();
+}
+######################################################################
+
+function KnockGonder() {
+	if (baglantikes != 0) { return; }
+	if (aktifkonusma == 0) { return; }
+	if (knockcdown != 0) { return; }
+	knockcdown = 10;
+	
+	$('input#chatmsg').val('_sescal.knock');
+	KonusmaGonder();
+}
+
+######################################################################
+if (mesaj != '_sescal.knock') {
+..
+}
+}else{
+	PlayFlashMovie();
+	StatusLogEkle('[*] Karsidakinin ekranini tiklattiniz!');
+}
+
+
+######################################################################
+
+if (cevap == "_sescal.knock") {
+	PlayFlashMovie();
+	StatusLogEkle('[*] Karsidaki sizin ekraninizi tiklatti!');
+}
+######################################################################
+
+if (knockcdown > 0) knockcdown--; (10 saniye sonra yeni knock yapmasý süre sayýyor)

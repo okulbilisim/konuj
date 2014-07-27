@@ -1,0 +1,26 @@
+.boxy-wrapper .title-bar{ background-color:#3b5999;}
+.fb .somebodyHead{background-color:#ececec;}
+.fb .chatText{
+	color:#777;
+	border:1px solid #BDC7D8;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;	
+	padding:3px;
+}
+.fb a,.fb a:hover{
+	color:#3B5998;
+}
+.fb .somebodyFooter{
+	background-color:#f2f2f2;
+}
+.fb .sendThis a,.fb .sendThis a:hover{
+	background-color:#627aac;
+	color:#fff;
+}
+.fb .logItem {border-bottom-color:#efefef;}
+.fb .logItem .time{color:#405d9f;}
+.fb .logItem .nic{color:#405d9f;}
+.fb  .you .nic{color:#333;}
+.fb .logItem .msg{color:#cccc}
+
+#counter,#about{background: #627AAD; color:#fff;}
+#about a, #counter a:hover{text-decoration:none; color:#fff;}

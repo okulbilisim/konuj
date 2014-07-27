@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <title>KONUj</title>
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="content-language" content="tr" />
+    <meta name="rating" content="All" />
+    <meta name="robots" content="index, all" />
+    <meta name="classification" content="Social Networking" />
+    <link rel="stylesheet" href="css/all.css" type="text/css" />
+    <link rel="stylesheet" name="theme" href="css/facebook.css" type="text/css" />
+	<!--[if IE]>
+	.boxy-wrapper .boxy-top-left { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/boxy-nw.png'); }
+	.boxy-wrapper .boxy-top-right { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/boxy-ne.png'); }
+	.boxy-wrapper .boxy-bottom-right { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/boxy-se.png'); }
+	.boxy-wrapper .boxy-bottom-left { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/boxy-sw.png'); }
+	<![endif]-->
+</head>
+<body>
+<div id="main"></div>
+<div id="counter"></div>
+<div id="about"><a href="#">hakkında</a> | <a href="#">şartlar</a></div>
+
+
+<div id="start_chat_button">
+     <input id='username' type='text' style='display:none;'/>    
+</div>
+
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.boxy.js"></script>
+<script type="text/javascript">
+ 
+      var isTyping = false;
+      var isChatting = false;
+      
+      function randomString() {
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var string_length = 60;
+        var randomstring = '';
+        for (var i=0; i<string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum,rnum+1);
+        }
+        return randomstring;
+    }
+
+      function xhr(method,uri,body,handler) {
+        var req=(window.XMLHttpRequest)?new XMLHttpRequest():new ActiveXObject('Microsoft.XMLHTTP');
+        
+        req.onreadystatechange=function() { if (req.readyState==4 && handler) { if(req.responseText){eval('var o='+req.responseText);handler(o);}} }
+        req.open(method,uri,true);
+        req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        req.send(body);
+      };
+      function send(action,user,message,handler){
+        if (message)
+        {
+            message=message.replace('%','%25').replace('&','%26').replace('=','%3D');
+        }
+        if (user)
+        {
+            user=user.replace('%','%25').replace('&','%26').replace('=','%3D');
+        }
+        $.ajax({url:"/chat/", data:{ action: action, user: user, message: message }, type:'POST', dataType:'json', success:handler});
+        
+      };
+      
+      function updateOnlineUserCount()
+      {
+        $.get('/chat/count',function(count){ $('#counter').html(count);});
+      }
+      
+      var room = {
+        join: function(name) {
+          this._username=name;
+          $('#start_chat_button').hide();
+          changeState('connecting');
+          send('join', room._username,null,function(){
+                send('poll', room._username,null, room._poll);
+                changeState('waiting');
+          });
+          isChatting = true;
+        },
+        chat: function(text) {
+          if (text != null && text.length>0 )
+          {
+              send('chat',room._username,text);
+          }
+        },
+        _poll: function(m) {
+          //console.debug(m);
+          if (m.chat){              
+            if(m.from == "JOINED")
+            {       
+                changeState('chatting');
+				$('#chatTextInput').removeAttr('disabled');
+			    $('.sendThis').html('<a href="#" id="sendThisLink">Gönder</a>');
+				
+                updateOnlineUserCount();
+            }
+            else if(m.from == "TYPING")
+            {
+                addTypingNotification();
+            }
+            else if(m.from == "DISCONNECTED")
+            {
+                removeTypingNotification();
+                changeState('disconnect');
+                setTimeout(function(){updateOnlineUserCount(); },2000);
+                isChatting = false;
+                return;
+            }
+            else
+            {
+				if(m.from == 'Yabanji'){
+					removeTypingNotification();
+				}
+                addRow(m.from,m.chat);
+            }
+          }
+          if (m.action=='poll'){
+            send('poll', room._username,null, room._poll);
+          }
+        },
+        _end:''
+      };
+
+function disconnect()
+{
+        //if( isChatting && confirm("Cidden konujmayı bitirecen?"))
+        //{
+            sendDisconnect();
+        //}
+}
+
+function sendDisconnect()
+{
+    send('end', room._username,null, function(m){ /*alert(m);*/ });            
+}
+
+
+function  startChat() 
+{  
+     var username = randomString();
+    $('#username').val(username);
+    room.join(username);
+    
+}
+
+function removeTypingNotification(){
+    $('#typeSpan').empty();
+	isTyping = false;
+}
+
+
+function addTypingNotification()
+{
+    $('#typeSpan').html(' yazıyor..');
+}
+
+function addRow(from,msg)
+{
+	now = new Date();
+	timeOfChat = now.getHours() + ":" + now.getMinutes() + ':' + now.getSeconds();
+
+	if(from.toLowerCase() == "yabanji"){
+		classOfLog = ' stranger';
+	 }else{
+		 classOfLog = ' you';
+	 }
+
+	 $('#chatwindow .messages').append('<div class="logItem'+classOfLog+'"><div class="time">'+timeOfChat+'</div><div class="nic">'+from+'</div><div class="msg">'+msg+'</div></div>')
+							 .animate({scrollTop: $('#chatwindow .messages').attr('scrollHeight')},200);
+
+}
+
+
+
+
+function changeState(state)
+{
+    $('#cht_conversation-frame, #cht_entry-frame, #span_startchat, #span_waiting, #span_disconnect, #span_chatting, #span_connecting').hide();
+    
+    $('#span_'+state).show();
+    
+    if(state == "chatting")
+    {
+        $('#cht_conversation-frame, #cht_entry-frame').show();
+    }
+    
+    if(state == "disconnect")
+    {
+        $('#cht_conversation-frame').show();      
+    }
+    
+}
+
+
+
+
+</script>
+<script type="text/javascript">
+    $(function(){
+        $.fn.fixedPosition = function(options){
+            var defaults = {
+              vpos: null,
+              hpos: null
+            };
+            var options = $.extend(defaults, options);
+            return this.each(function(index) {
+                var $this = $(this);
+                $this.css("position","absolute");
+                if(options.vpos === "top"){
+                    $this.css("top","0");
+                }
+                else if(options.vpos === "middle"){
+                    $this.css("top",((parseInt($(window).height())/2)-($(this).height()/2))+"px");
+                }
+                else if(options.vpos === "bottom"){
+                    $this.css("bottom","0");
+                }
+                if(options.hpos === "left"){
+                    $this.css("left","0");
+                }
+                else if(options.hpos === "center"){
+                    $this.css("left",((parseInt($(window).width())/2)-($(this).width()/2))+"px");
+                }
+                else if(options.hpos === "right"){
+                    $this.css("right","0");
+                }
+                var top = parseInt($this.offset().top);
+                var left = parseInt($this.offset().left);
+                $(window).scroll(function () {
+                    $this.css("top",top+$(document).scrollTop()).css("left",left+$(document).scrollLeft());
+                });
+            });
+        };
+
+        $('.chatText').live('keyup',function(e){
+			if(!isTyping)
+			{
+				isTyping = true;
+				send('typing', room._username,null, null);
+			}
+            if(e.keyCode==13 && $(this).val()!=''){
+                //messegesDiv = $(this).parent().parent().parent().parent().find('.messages');
+                //messegesDiv.append('<div class="logItem you"><div class="time">12:12:12</div><div class="nic">sen</div><div class="msg">'+$(this).val()+'</div></div>')
+                $('#chatwindow .messages').animate({scrollTop: $('#chatwindow .messages').attr('scrollHeight')},200);
+				room.chat($('.chatText').val()); 
+				isTyping = false;
+                $(this).val('').focus();
+            }
+            if(e.keyCode==9){
+                $('.chatText').each(function(index) {
+                    //alert(index + ': ' + $(this).text());
+                });
+            }
+        });
+		$('#sendThisLink').click(function(){
+			isTyping = false;
+			send('chat',room._username,$('.chatText').val());
+            $('.chatText').val('').focus();
+			return false;
+		});
+        
+        Boxy.DEFAULTS.title = 'KONUj';
+         new Boxy('<div style="width:300px;"><h2>HOŞ GELDİNİZ</h2>   <p>Yabancı birisiyle konuşmak için hemen sohbete başlaya tıklayınız.</p>    <p><a href="#chatwindow" class="boxy" id="startChat">KONUj</a></p></div>', function(){ alert('a ss sdas');}, {title: "KONUj'a Hoşgeldiniz", closeable: false});
+		
+
+        //$('#startMe').trigger('click');
+        //$('#chatwindowOpen').trigger('click');
+        $('#counter').fixedPosition({vpos: 'top', hpos: 'right'});
+        $('#about').fixedPosition({vpos: 'bottom', hpos: 'center'});
+        $('#startChat').click(function(){
+			new Boxy('<div id="chatwindow" class="hidden ping">    <div class="somebody fb">        <div class="somebodyHead">            <div class="somebodyActions">                <a href="#"><img src="img/disk.png" /></a>            </div>            <h3>Birisi <span id="typeSpan"></span></h3>        </div>        <div class="somebodyBody">            <div class="log messages">            </div>        </div>        <div class="somebodyFooter">            <div class="chat">                <div class="text">                    <input class="chatText" id="chatTextInput" disabled="disabled" />                </div>                <div class="sendThis">                                    </div>            </div>        </div>    </div></div>', {title: "KONUj-1"});
+
+            startChat();
+            return false;
+        });
+		$('.chatText').val('');
+
+});
+
+window.onbeforeunload= function (evt) {
+    //if(isChatting)
+    //    return "Konujmadan kopmak istiyor musun ?";    
+}
+window.onunload = function (evt) {
+    if(isChatting)
+        sendDisconnect();
+}
+
+    updateOnlineUserCount();
+    changeState("startchat"); 
+</script>
+</body>
+</html>

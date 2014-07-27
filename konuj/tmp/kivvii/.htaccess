@@ -1,0 +1,28 @@
+
+RewriteEngine On
+
+Options +FollowSymLinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^index index.php [L]
+RewriteRule ^kivviile kivviile.php [L]
+RewriteRule ^iletisim iletisim.php [L]
+RewriteRule ^hakkimizda hakkimizda.php [L]
+RewriteRule ^sss sss.php [L]
+RewriteRule ^gizlilik gizlilik.php [L]
+RewriteRule ^kaydet kaydet.php [L]
+RewriteRule ^ajax/baglantikes ajax/baglantikes.php [L]
+RewriteRule ^ajax/bekleme ajax/bekleme.php [L]
+RewriteRule ^ajax/bul ajax/bul.php [L]
+RewriteRule ^ajax/durum ajax/durum.php [L]
+RewriteRule ^ajax/mesajgonder ajax/mesajgonder.php [L]
+RewriteRule ^ajax/mesajsorgu ajax/mesajsorgu.php [L]
+RewriteRule ^ajax/offline ajax/offline.php [L]
+RewriteRule ^ajax/ping ajax/ping.php [L]
+RewriteRule ^ajax/yaziyor ajax/yaziyor.php [L]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^ajax/([A-Za-z0-9-]+) ajax/$1.php [L]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^event/([A-Za-z0-9-]+)/(.*) index.php?act=event&event_id=$1&name=$2 [L]

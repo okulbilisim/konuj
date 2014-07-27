@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <title>KONUj - Bir hata olduj</title>
+    <meta name="author" content="konuj" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="content-language" content="tr" />
+    <meta name="rating" content="All" />
+    <meta name="robots" content="index, all" />
+    <meta name="classification" content="Social Networking" />
+    <link rel="stylesheet" href="css/all.css" type="text/css" />
+    <link rel="stylesheet" name="theme" href="css/facebook.css" type="text/css" />
+</head>
+<body>
+<div id="main"></div>
+<div id="counter"></div>
+<div id="about"><a href="#">hakkında</a> | <a href="#">şartlar</a></div>
+
+
+
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.boxy.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $.fn.fixedPosition = function(options){
+            var defaults = {
+              vpos: null,
+              hpos: null
+            };
+            var options = $.extend(defaults, options);
+            return this.each(function(index) {
+                var $this = $(this);
+                $this.css("position","absolute");
+                if(options.vpos === "top"){
+                    $this.css("top","0");
+                }
+                else if(options.vpos === "middle"){
+                    $this.css("top",((parseInt($(window).height())/2)-($(this).height()/2))+"px");
+                }
+                else if(options.vpos === "bottom"){
+                    $this.css("bottom","0");
+                }
+                if(options.hpos === "left"){
+                    $this.css("left","0");
+                }
+                else if(options.hpos === "center"){
+                    $this.css("left",((parseInt($(window).width())/2)-($(this).width()/2))+"px");
+                }
+                else if(options.hpos === "right"){
+                    $this.css("right","0");
+                }
+                var top = parseInt($this.offset().top);
+                var left = parseInt($this.offset().left);
+                $(window).scroll(function () {
+                    $this.css("top",top+$(document).scrollTop()).css("left",left+$(document).scrollLeft());
+                });
+            });
+        };
+
+
+		new Boxy('<div style="width:300px;"><h2>Bir Hata Olduj</h2><p><br /><a href="./" id="startChat" style="color:red">Anasayfaya Dönj</a></p></div>', 
+		{
+		title: "KONUj - HATA", 
+		closeable: false
+		});
+});
+</script>
+</body>
+</html>
